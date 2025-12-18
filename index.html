@@ -70,6 +70,51 @@
             cursor: pointer;
             font-size: 16px;
         }
+
+        /* Стилі для корзини */
+        .cart {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .cart h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cart-item-title {
+            font-weight: bold;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .empty-cart {
+            text-align: center;
+            color: #999;
+            min-height: 100px;
+        }
     </style>
 </head>
 <body>
@@ -81,79 +126,57 @@
     <div class="product-card">
         <img src="https://i.moyo.ua/img/products/5503/39_1500.jpg" alt="Ноутбук">
         <h3>Ноутбук HP</h3>
-        <div class="price">24 999 грн</div>
-        
+        <div class="price" data-price="24999">24 999 грн</div>
+       
         <div class="counter-wrapper">
             <button class="items__control" data-action="minus">-</button>
             <div class="items__current" data-counter>1</div>
             <button class="items__control" data-action="plus">+</button>
         </div>
-        
-        <button class="add-to-cart">Додати в кошик</button>
+       
+        <button data-cart class="add-to-cart">Додати в кошик</button>
     </div>
 
     <!-- Картка 2 -->
     <div class="product-card">
         <img src="https://i.moyo.ua/img/products/4988/82_1500.jpg" alt="Смартфон">
         <h3>Смартфон Apple</h3>
-        <div class="price">12 499 грн</div>
-        
+        <div class="price" data-price="12499">12 499 грн</div>
+       
         <div class="counter-wrapper">
             <button class="items__control" data-action="minus">-</button>
             <div class="items__current" data-counter>1</div>
             <button class="items__control" data-action="plus">+</button>
         </div>
-        
-        <button class="add-to-cart">Додати в кошик</button>
+       
+        <button data-cart class="add-to-cart">Додати в кошик</button>
     </div>
 
     <!-- Картка 3 -->
     <div class="product-card">
         <img src="https://i.moyo.ua/img/products/5580/61_1500.jpg" alt="Навушники">
         <h3>Навушники Sony</h3>
-        <div class="price">4 999 грн</div>
-        
+        <div class="price" data-price="4999">4 999 грн</div>
+       
         <div class="counter-wrapper">
             <button class="items__control" data-action="minus">-</button>
             <div class="items__current" data-counter>1</div>
             <button class="items__control" data-action="plus">+</button>
         </div>
-        
-        <button class="add-to-cart">Додати в кошик</button>
+       
+        <button data-cart class="add-to-cart">Додати в кошик</button>
     </div>
+
+    <!-- Корзина -->
+    <div class="cart">
+        <h2>Кошик</h2>
+        <div id="cart-items" class="empty-cart">Кошик порожній</div>
+        <div class="cart-total">Разом: <span id="cart-total-price">0</span> грн</div>
+    </div>
+
 </div>
 
-<script>
-    // тут я роблю лічильники для всіх карток
-    // використовую делегування  один обробник на весь документ
-    window.addEventListener('click', function(event) {
-        // шукаю кнопку + або -
-        if (event.target.dataset.action === 'plus' || event.target.dataset.action === 'minus') {
-            // знаходжу батьківський counter-wrapper
-            const counterWrapper = event.target.closest('.counter-wrapper');
-            // знаходжу сам лічильник
-            const counter = counterWrapper.querySelector('[data-counter]');
-            
-            // перетворюю текст в число
-            let currentValue = parseInt(counter.innerText);
-            
-            // якщо плюс  збільшуємо
-            if (event.target.dataset.action === 'plus') {
-                currentValue++;
-            }
-            
-            // якщо мінус зменшуємо, але не нижче 1
-            if (event.target.dataset.action === 'minus') {
-                if (currentValue > 1) {
-                    currentValue--;
-                }
-            }
-            
-            // записую нове значення назад
-            counter.innerText = currentValue;
-        }
-    });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
