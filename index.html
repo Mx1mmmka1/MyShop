@@ -71,7 +71,7 @@
             font-size: 16px;
         }
 
-        /* Стилі для корзини */
+        /* Корзина */
         .cart {
             background: white;
             border-radius: 10px;
@@ -101,6 +101,9 @@
             object-fit: cover;
             border-radius: 8px;
         }
+        .cart-item-info {
+            flex: 1;
+        }
         .cart-item-title {
             font-weight: bold;
         }
@@ -115,6 +118,18 @@
             color: #999;
             min-height: 100px;
         }
+        .cart-order-button {
+            width: 100%;
+            padding: 15px;
+            background: #ffc107;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -122,49 +137,43 @@
 <h1>Мій інтернет-магазин</h1>
 
 <div class="container">
-    <!-- Картка 1 -->
-    <div class="product-card">
-        <img src="https://i.moyo.ua/img/products/5503/39_1500.jpg" alt="Ноутбук">
-        <h3>Ноутбук HP</h3>
-        <div class="price" data-price="24999">24 999 грн</div>
-       
-        <div class="counter-wrapper">
-            <button class="items__control" data-action="minus">-</button>
-            <div class="items__current" data-counter>1</div>
-            <button class="items__control" data-action="plus">+</button>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+        <!-- Картки товарів (твої 3 картки без змін) -->
+        <div class="product-card">
+            <img src="https://i.moyo.ua/img/products/5503/39_1500.jpg" alt="Ноутбук">
+            <h3>Ноутбук HP</h3>
+            <div class="price" data-price="24999">24 999 грн</div>
+            <div class="counter-wrapper">
+                <button class="items__control" data-action="minus">-</button>
+                <div class="items__current" data-counter>1</div>
+                <button class="items__control" data-action="plus">+</button>
+            </div>
+            <button data-cart class="add-to-cart">Додати в кошик</button>
         </div>
-       
-        <button data-cart class="add-to-cart">Додати в кошик</button>
-    </div>
 
-    <!-- Картка 2 -->
-    <div class="product-card">
-        <img src="https://i.moyo.ua/img/products/4988/82_1500.jpg" alt="Смартфон">
-        <h3>Смартфон Apple</h3>
-        <div class="price" data-price="12499">12 499 грн</div>
-       
-        <div class="counter-wrapper">
-            <button class="items__control" data-action="minus">-</button>
-            <div class="items__current" data-counter>1</div>
-            <button class="items__control" data-action="plus">+</button>
+        <div class="product-card">
+            <img src="https://i.moyo.ua/img/products/4988/82_1500.jpg" alt="Смартфон">
+            <h3>Смартфон Apple</h3>
+            <div class="price" data-price="12499">12 499 грн</div>
+            <div class="counter-wrapper">
+                <button class="items__control" data-action="minus">-</button>
+                <div class="items__current" data-counter>1</div>
+                <button class="items__control" data-action="plus">+</button>
+            </div>
+            <button data-cart class="add-to-cart">Додати в кошик</button>
         </div>
-       
-        <button data-cart class="add-to-cart">Додати в кошик</button>
-    </div>
 
-    <!-- Картка 3 -->
-    <div class="product-card">
-        <img src="https://i.moyo.ua/img/products/5580/61_1500.jpg" alt="Навушники">
-        <h3>Навушники Sony</h3>
-        <div class="price" data-price="4999">4 999 грн</div>
-       
-        <div class="counter-wrapper">
-            <button class="items__control" data-action="minus">-</button>
-            <div class="items__current" data-counter>1</div>
-            <button class="items__control" data-action="plus">+</button>
+        <div class="product-card">
+            <img src="https://i.moyo.ua/img/products/5580/61_1500.jpg" alt="Навушники">
+            <h3>Навушники Sony</h3>
+            <div class="price" data-price="4999">4 999 грн</div>
+            <div class="counter-wrapper">
+                <button class="items__control" data-action="minus">-</button>
+                <div class="items__current" data-counter>1</div>
+                <button class="items__control" data-action="plus">+</button>
+            </div>
+            <button data-cart class="add-to-cart">Додати в кошик</button>
         </div>
-       
-        <button data-cart class="add-to-cart">Додати в кошик</button>
     </div>
 
     <!-- Корзина -->
@@ -172,8 +181,8 @@
         <h2>Кошик</h2>
         <div id="cart-items" class="empty-cart">Кошик порожній</div>
         <div class="cart-total">Разом: <span id="cart-total-price">0</span> грн</div>
+        <button class="cart-order-button">Оформити замовлення</button>
     </div>
-
 </div>
 
 <script src="script.js"></script>
